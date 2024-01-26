@@ -1,0 +1,11 @@
+.Dashborad {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 0 15dvw;
+    flex-wrap: wrap;
+    gap: 1rem;
+}

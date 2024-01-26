@@ -1,0 +1,71 @@
+:root {
+    --light-background: rgb(243, 240, 224);
+    --light-header-background: rgb(255, 198, 75);
+    --light-main-background: rgb(228, 187, 99);
+    --botname-background: rgb(255, 255, 255);
+
+    --dark-background: rgb(57, 62, 70);
+    --dark-header-background: rgb(21, 22, 63);
+    --dark-main-background: rgb(12, 13, 31);
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    transition: background-color 200ms linear, color 200ms ease-in-out;
+}
+
+header {
+    width: 100%;
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 800;
+    transition: background-color 200ms linear;
+}
+
+.BotName {
+    user-select: text;
+    padding: .1rem .5rem;
+    background-color: var(--botname-background);
+    border-radius: 1rem;
+    color: var(--light-color);
+}
+
+.Сontainer {
+    padding: 0 17dvw;
+    height: 100%;
+    width: 100%;
+    animation: showMain 500ms ease-in-out;
+}
+
+.App.light {
+    background-color: var(--light-background);
+    color: var(--light-color);
+}
+
+.App.dark {
+    background-color: var(--dark-background);
+    color: var(--dark-color);
+}
+
+header.light {
+    background-color: var(--light-header-background);
+}
+
+header.dark {
+    background-color: var(--dark-header-background);
+}
+
+@keyframes showMain {
+    0% {
+        transform: scale(0%);
+    }
+
+    100% {
+        transform: scale(100%);
+    }
+}

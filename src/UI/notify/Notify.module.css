@@ -1,0 +1,45 @@
+.Notify {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding: 1rem;
+    border-radius: 1rem;
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    max-width: 25vw;
+    animation: created 500ms ease-in;
+}
+
+.Error {
+    background-color: rgba(255, 0, 64, 0.5);
+}
+
+.Success {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+
+.Deleted {
+    animation: deleted 500ms ease-in;
+}
+
+@keyframes created {
+    0% {
+        transform: translateY(200%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes deleted {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(200%);
+    }
+}

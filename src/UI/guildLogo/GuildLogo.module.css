@@ -1,0 +1,66 @@
+.GuildLogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    transition: transform 100ms ease-in-out;
+}
+
+.guild {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5rem;
+}
+
+.GuildLogo img {
+    height: 10rem;
+    width: 10rem;
+    background-color: rgb(180, 46, 46);
+    border-radius: 5rem;
+    transition: filter 100ms linear, box-shadow 100ms linear;
+}
+
+.label {
+    display: inline-block;
+    position: absolute;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 800;
+    color: white;
+    opacity: 0;
+    transition: opacity 100ms linear;
+}
+
+.notHave {
+    text-transform: uppercase;
+    background-color: rgb(255, 81, 81);
+    padding: .25rem .2rem;
+    border-radius: .25rem;
+    color: white;
+    transition: box-shadow 100ms linear;
+}
+
+.notHaveHidden {
+    opacity: 0;
+}
+
+
+.GuildLogo:hover {
+    transform: scale(90%);
+    cursor: pointer;
+}
+
+.GuildLogo:hover img {
+    filter: brightness(40%);
+    box-shadow: 0 0 1rem black;
+}
+
+.GuildLogo:hover .label {
+    opacity: 1;
+}
+
+.GuildLogo:hover .notHave {
+    box-shadow: 0 0 1rem black;
+}
