@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./Selector.module.css";
 
-function Selector({ name, children, variants, onChange, value }) {
+function Selector({ name, children, variants, onChange, value, multiple }) {
     const [options, setOptions] = useState([<option value={0} key={0}>{name}</option>]);
 
     useEffect(() => {
@@ -14,7 +14,7 @@ function Selector({ name, children, variants, onChange, value }) {
     return (
         <div className={style.Selector}>
             <p>{children}</p>
-            <select onChange={onChange} value={value}>
+            <select onChange={onChange} value={value} multiple={multiple === true ? true : false}>
                 {options}
             </select>
         </div>

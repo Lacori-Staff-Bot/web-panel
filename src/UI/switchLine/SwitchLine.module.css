@@ -1,0 +1,9 @@
+.SwitchLine {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.SwitchLine p {
+    font-size: 1.5rem;
+}

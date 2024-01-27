@@ -55,7 +55,7 @@ function MainSettings({ cookies, removeCookies, setNotify }) {
                     <Label>Система предупреждений</Label>
                     <Selector onChange={(ev) => {
                         setPreds(ev.currentTarget.value);
-                    }} variants={response.channels} name={"Канал не выбрана"} value={preds}>Канал предупреждений:</Selector>
+                    }} variants={response.channels} name={"Канал не выбран"} value={preds}>Канал предупреждений:</Selector>
                 </div>,
                 <div className="saveButtonBlock" key={"save_button"}>
                     <MyButton onClick={() => {

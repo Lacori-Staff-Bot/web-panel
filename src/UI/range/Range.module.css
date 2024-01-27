@@ -1,0 +1,9 @@
+.Range {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.Range p {
+    font-size: 1.5rem;
+}

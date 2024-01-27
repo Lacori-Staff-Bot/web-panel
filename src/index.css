@@ -17,4 +17,5 @@ html, body, #root {
     min-height: 100% !important;
     height: 100%;
     user-select: none;
+    font-size: 1dvw;
 }

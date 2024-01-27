@@ -3,14 +3,14 @@ import stringToHash from "../subfunctions/stringToHash";
 
 import Notify from "../UI/notify/Notify";
 
-async function restrictions(cookie, key, params, type, setResponse, removeCookies, setNotify, navigate, signalChannel, maxBans, maxMutes, maxWarns, maxPreds) {
+async function restrictions(cookie, key, params, type, setResponse, removeCookies, setNotify, navigate, signalChannel, maxBans, maxMutes, maxWarns, maxPreds, permissions) {
     if (!cookie) {
         navigate("/auth", { replace: true });
         return;
     }
 
     const hash = stringToHash(key);
-    const data = { cookie, key: hash, guildId: params.id, type, signalChannel, maxBans, maxMutes, maxWarns, maxPreds };
+    const data = { cookie, key: hash, guildId: params.id, type, signalChannel, maxBans, maxMutes, maxWarns, maxPreds, permissions };
     sendAPIRequest("POST", "/restrictions", data, (e) => {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {

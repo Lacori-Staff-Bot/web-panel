@@ -49,7 +49,7 @@ function App() {
           <Route path='dashboard' element={<DashboardPage cookies={cookies} removeCookies={removeCookies} />} />
           <Route path='g/:id'>
             <Route index element={<GuildPage theme={theme} mainBlock={<MainSettings cookies={cookies} removeCookies={removeCookies} setNotify={setNotify} />} />} />
-            <Route path='restrictions' element={<GuildPage theme={theme} mainBlock={<Restrictions cookies={cookies} removeCookies={removeCookies} setNotify={setNotify} />} />} />
+            <Route path='restrictions' element={<GuildPage theme={theme} mainBlock={<Restrictions theme={theme} cookies={cookies} removeCookies={removeCookies} setNotify={setNotify} />} />} />
             <Route path='bans' element={<GuildPage theme={theme} />} />
             <Route path='warns' element={<GuildPage theme={theme} />} />
             <Route path='blocks' element={<GuildPage theme={theme} />} />
