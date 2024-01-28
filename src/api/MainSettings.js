@@ -1,7 +1,7 @@
 import { xhr, sendAPIRequest } from "./Main";
 import stringToHash from "../subfunctions/stringToHash";
 
-import Notify from "../UI/notify/Notify";
+import Notify from "../components/UI/notify/Notify";
 
 async function mainSettings(cookie, key, params, type, setResponse, removeCookies, setNotify, navigate, audit, male, female, preds) {
     if (!cookie) {

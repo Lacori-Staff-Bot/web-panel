@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import stringToHash from "../../subfunctions/stringToHash.js";
+import React, { useContext, useEffect, useState } from "react";
 import dashboard from "../../api/Dashboard.js";
 import "./Dashboard.css";
+import { NavigateContext } from "../../App.jsx";
 
-import LoadingScreen from "../../UI/loadingScreen/LoadingScreen";
+import LoadingScreen from "../../components/UI/loadingScreen/LoadingScreen.jsx";
 
 function DashboardPage({ cookies, removeCookies }) {
-    const [navigate, setNavigate] = useState(!cookies.auth ? <Navigate to="/auth" replace={false} /> : null);
+    const navigate = useContext(NavigateContext);
     const [guilds, setGuilds] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        if (!isLoaded && cookies.key) {
-            const hash = stringToHash(cookies.key);
-            dashboard(cookies.auth, hash, removeCookies, setNavigate, setGuilds);
+        if (!isLoaded && cookies.auth) {
+            dashboard(cookies.auth, cookies.key, removeCookies, navigate, setGuilds);
             setIsLoaded(true);
         }
-    }, [isLoaded, cookies, removeCookies])
+    }, [isLoaded, cookies, removeCookies, navigate])
 
     return (
         <div className="Dashborad">
-            {guilds == [] ? <LoadingScreen /> : guilds}
-            {navigate}
+            {guilds.length === 0 ? <LoadingScreen /> : guilds}
         </div>
     )
 }

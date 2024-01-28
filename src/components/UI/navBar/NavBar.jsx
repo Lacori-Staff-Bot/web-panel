@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import style from "./NavBar.module.css";
 
-function NavBar({ children, theme }) {
+import { ThemeContext } from "../../../App";
+
+function NavBar({ children }) {
+    const theme = useContext(ThemeContext);
+
     return (
         <ul className={theme === "light" ? [style.NavBar, style.light].join(" ") : [style.NavBar, style.dark].join(" ")}>
             {children}

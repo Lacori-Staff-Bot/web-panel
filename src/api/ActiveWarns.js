@@ -1,7 +1,7 @@
 import { xhr, sendAPIRequest } from "./Main";
 import stringToHash from "../subfunctions/stringToHash";
 
-import Notify from "../UI/notify/Notify";
+import Notify from "../components/UI/notify/Notify";
 
 function activeWarns(cookie, key, params, type, id, setResponse, removeCookies, setNotify, navigate) {
     if (!cookie) {

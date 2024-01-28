@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import activeBlocks from "../../../api/ActiveBlocks.js";
+import { NavigateContext } from "../../../App.jsx";
 
-import LoadingScreen from "../../../UI/loadingScreen/LoadingScreen";
-import ActiveBlock from "../../../UI/activeBlock/ActiveBlock";
-import Nothink from "../../../UI/nothink/Nothink";
+import LoadingScreen from "../../../components/UI/loadingScreen/LoadingScreen";
+import ActiveBlock from "../../../components/activeBlock/ActiveBlock";
+import Nothink from "../../../components/UI/nothink/Nothink";
 
-
-function ActiveBlocks({ cookies, removeCookies, setNotify, theme }) {
+function ActiveBlocks({ cookies, removeCookies, setNotify }) {
     const [blocks, setBlocks] = useState([]);
 
     const [response, setResponse] = useState(null);
     const [blockBody, setBlockBody] = useState(<LoadingScreen />);
 
-    const navigate = useNavigate();
+    const navigate = useContext(NavigateContext);
     const params = useParams();
 
     useEffect(() => {
         activeBlocks(cookies.auth, cookies.key, params, "get_info", undefined, setResponse, removeCookies, setNotify, navigate);
-    }, []);
+    }, [cookies, params, removeCookies, navigate, setNotify]);
 
     useEffect(() => {
         if (response !== null) {
@@ -31,14 +31,14 @@ function ActiveBlocks({ cookies, removeCookies, setNotify, theme }) {
             setBlockBody([]);
             for (const block of blocks) {
                 setBlockBody(blockBody => [...blockBody, <ActiveBlock onClick={(ev) => {
-                    activeBlocks(cookies.auth, cookies.key, params, "remove_block", block.id, undefined, removeCookies, setNotify);
+                    activeBlocks(cookies.auth, cookies.key, params, "remove_block", block.id, undefined, removeCookies, setNotify, navigate);
                     setBlocks(blocks => blocks.filter(b => b.id !== block.id));
-                }} target={block.target} author={block.author} reasone={block.reasone} data={block.data} theme={theme} key={block.id} />]);
+                }} target={block.target} author={block.author} reasone={block.reasone} data={block.data} key={block.id} />]);
             }
         } else {
             setBlockBody(<Nothink />);
         }
-    }, [blocks, theme]);
+    }, [cookies, params, removeCookies, navigate, setNotify, blocks]);
 
     return (
         <div className="mainBlock">

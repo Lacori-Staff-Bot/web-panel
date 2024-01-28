@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import activeWarns from "../../../api/ActiveWarns.js";
+import { NavigateContext } from "../../../App.jsx";
 
-import LoadingScreen from "../../../UI/loadingScreen/LoadingScreen";
-import ActiveBlock from "../../../UI/activeBlock/ActiveBlock";
-import Nothink from "../../../UI/nothink/Nothink";
+import LoadingScreen from "../../../components/UI/loadingScreen/LoadingScreen";
+import ActiveBlock from "../../../components/activeBlock/ActiveBlock";
+import Nothink from "../../../components/UI/nothink/Nothink";
 
 
-function ActiveWarns({ cookies, removeCookies, setNotify, theme }) {
+function ActiveWarns({ cookies, removeCookies, setNotify }) {
     const [warns, setWarns] = useState([]);
 
     const [response, setResponse] = useState(null);
     const [blockBody, setBlockBody] = useState(<LoadingScreen />);
 
-    const navigate = useNavigate();
+    const navigate = useContext(NavigateContext);
     const params = useParams();
 
     useEffect(() => {
         activeWarns(cookies.auth, cookies.key, params, "get_info", undefined, setResponse, removeCookies, setNotify, navigate);
-    }, []);
+    }, [cookies, params, removeCookies, navigate, setNotify]);
 
     useEffect(() => {
         if (response !== null) {
@@ -31,14 +32,14 @@ function ActiveWarns({ cookies, removeCookies, setNotify, theme }) {
             setBlockBody([]);
             for (const warn of warns) {
                 setBlockBody(blockBody => [...blockBody, <ActiveBlock onClick={(ev) => {
-                    activeWarns(cookies.auth, cookies.key, params, "remove_warn", warn.id, undefined, removeCookies, setNotify);
+                    activeWarns(cookies.auth, cookies.key, params, "remove_warn", warn.id, undefined, removeCookies, setNotify, navigate);
                     setWarns(warns => warns.filter(w => w.id !== warn.id));
-                }} target={warn.target} author={warn.author} reasone={warn.reasone} data={warn.data} theme={theme} key={warn.id} />]);
+                }} target={warn.target} author={warn.author} reasone={warn.reasone} data={warn.data} key={warn.id} />]);
             }
         } else {
             setBlockBody(<Nothink />);
         }
-    }, [warns, theme]);
+    }, [cookies, params, removeCookies, setNotify, navigate, warns]);
 
     return (
         <div className="mainBlock">

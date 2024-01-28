@@ -1,13 +1,13 @@
 import React from "react";
 import style from "./SwitchLine.module.css";
 
-import Switch from "../switch/Switch";
+import Switch from "../UI/switch/Switch";
 
-function SwitchLine({children, onChange, theme, checked}) {
+function SwitchLine({children, onChange, checked}) {
     return (
         <div className={style.SwitchLine}>
             <p>{children}</p>
-            <Switch onChange={onChange} theme={theme} checked={checked} />
+            <Switch onChange={onChange} checked={checked} />
         </div>
     )
 }

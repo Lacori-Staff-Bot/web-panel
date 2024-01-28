@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import mainSettings from "../../../api/MainSettings.js";
+import { NavigateContext } from "../../../App.jsx";
 
-import Label from "../../../UI/label/Label.jsx";
-import Selector from "../../../UI/selectorMenu/Selector.jsx";
-import MyButton from "../../../UI/myButton/MyButton.jsx";
-import LoadingScreen from "../../../UI/loadingScreen/LoadingScreen.jsx";
-import Notify from "../../../UI/notify/Notify.jsx";
+import Label from "../../../components/UI/label/Label";
+import Selector from "../../../components/UI/selectorMenu/Selector";
+import MyButton from "../../../components/UI/myButton/MyButton";
+import LoadingScreen from "../../../components/UI/loadingScreen/LoadingScreen";
+import Notify from "../../../components/UI/notify/Notify";
 
 function MainSettings({ cookies, removeCookies, setNotify }) {
     const [audit, setAudit] = useState(0);
@@ -17,12 +18,12 @@ function MainSettings({ cookies, removeCookies, setNotify }) {
     const [response, setResponse] = useState(null);
     const [blockBody, setBlockBody] = useState(<LoadingScreen />);
 
-    const navigate = useNavigate();
+    const navigate = useContext(NavigateContext);
     const params = useParams();
 
     useEffect(() => {
         mainSettings(cookies.auth, cookies.key, params, "get_info", setResponse, removeCookies, undefined, navigate);
-    }, []);
+    }, [cookies, navigate, params, removeCookies]);
 
     useEffect(() => {
         if (response !== null) {
@@ -85,7 +86,7 @@ function MainSettings({ cookies, removeCookies, setNotify }) {
                 </div>
             ]);
         }
-    }, [audit, male, female, preds]);
+    }, [cookies, navigate, params, removeCookies, response, setNotify, audit, male, female, preds]);
 
     return (
         <div className="mainBlock">

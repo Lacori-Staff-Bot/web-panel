@@ -9,7 +9,7 @@ function Selector({ name, children, variants, onChange, value, multiple }) {
         for (let variant of variants) {
             setOptions(options => [...options, <option value={variant.id} key={variant.id}>{variant.name}</option>]);
         }
-    }, [variants]);
+    }, [name, variants]);
 
     return (
         <div className={style.Selector}>

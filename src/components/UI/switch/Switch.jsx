@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./Switch.module.css";
 
-function Switch({ onChange, theme, checked }) {
+import { ThemeContext } from "../../../App";
+
+function Switch({ onChange, checked }) {
+    const theme = useContext(ThemeContext);
+
     return (
         <label className={style.Switch}>
             <input type="checkbox" onChange={onChange} checked={checked} />

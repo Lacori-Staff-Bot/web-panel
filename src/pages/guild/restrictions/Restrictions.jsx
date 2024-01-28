@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import restrictions from "../../../api/Restrictions.js";
+import { NavigateContext } from "../../../App.jsx";
 
-import Label from "../../../UI/label/Label";
-import LoadingScreen from "../../../UI/loadingScreen/LoadingScreen";
-import Selector from "../../../UI/selectorMenu/Selector";
-import Range from "../../../UI/range/Range";
-import SwitchLine from "../../../UI/switchLine/SwitchLine";
-import MyButton from "../../../UI/myButton/MyButton";
-import Notify from "../../../UI/notify/Notify";
+import Label from "../../../components/UI/label/Label";
+import LoadingScreen from "../../../components/UI/loadingScreen/LoadingScreen";
+import Selector from "../../../components/UI/selectorMenu/Selector";
+import Range from "../../../components/UI/range/Range";
+import SwitchLine from "../../../components/switchLine/SwitchLine";
+import MyButton from "../../../components/UI/myButton/MyButton";
+import Notify from "../../../components/UI/notify/Notify";
 
-function Restrictions({ cookies, removeCookies, setNotify, theme }) {
+function Restrictions({ cookies, removeCookies, setNotify }) {
     const [signalChannel, setSignalChannel] = useState(0);
     const [maxBans, setMaxBans] = useState(0);
     const [maxMutes, setMaxMutes] = useState(0);
@@ -21,7 +22,7 @@ function Restrictions({ cookies, removeCookies, setNotify, theme }) {
     const [response, setResponse] = useState(null);
     const [blockBody, setBlockBody] = useState(<LoadingScreen />);
 
-    const navigate = useNavigate();
+    const navigate = useContext(NavigateContext);
     const params = useParams();
 
     useEffect(() => {
@@ -69,7 +70,7 @@ function Restrictions({ cookies, removeCookies, setNotify, theme }) {
                         <SwitchLine onChange={(ev) => {
                             permission.selected = ev.currentTarget.checked;
                             setPermissions(permissions => [...permissions]);
-                        }} theme={theme} checked={permission.selected} key={permission.id}>{permission.name}</SwitchLine>
+                        }} checked={permission.selected} key={permission.id}>{permission.name}</SwitchLine>
                     ))}
                 </div>,
                 <div className="saveButtonBlock" key={"save_button"}>
@@ -86,7 +87,7 @@ function Restrictions({ cookies, removeCookies, setNotify, theme }) {
                         if (!(0 <= maxPreds && maxPreds <= 20)) {
                             setNotify(<Notify label={"Ошибка"} type={"Error"} description={"Максимальное количество предов должно быть в диапазоне от 0 до 20."} />)
                         }
-                        
+
                         var parsedPermissions = [];
                         for (const permission of permissions) {
                             if (permission.selected) parsedPermissions.push(permission.id);
@@ -96,7 +97,7 @@ function Restrictions({ cookies, removeCookies, setNotify, theme }) {
                 </div>
             ]);
         }
-    }, [response, signalChannel, maxBans, maxMutes, maxWarns, maxPreds, permissions, setNotify, theme]);
+    }, [cookies, navigate, params, removeCookies, response, setNotify, signalChannel, maxBans, maxMutes, maxWarns, maxPreds, permissions]);
 
     return (
         <div className="mainBlock">

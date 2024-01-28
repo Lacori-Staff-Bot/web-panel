@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./ActiveBlock.module.css";
 
-import MyButton from "../myButton/MyButton";
+import MyButton from "../UI/myButton/MyButton";
 
-function ActiveBlock({ target, author, reasone, data, onClick, theme }) {
+import { ThemeContext } from "../../App";
+
+function ActiveBlock({ target, author, reasone, data, onClick }) {
+    const theme = useContext(ThemeContext);
+
     return (
         <div className={[style.ActiveBlock, style[theme]].join(" ")}>
             <div className={style.left}>
