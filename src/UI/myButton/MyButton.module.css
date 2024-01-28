@@ -1,6 +1,10 @@
 :root {
     --save-background-idle: rgb(9, 212, 9);
     --save-background-hover: rgb(17, 148, 17);
+    --remove-background-idle: rgb(255, 33, 33);
+    --remove-background-hover: rgb(187, 21, 21);
+    --logout-background-idle: rgb(151, 0, 93);
+    --logout-background-hover: rgb(90, 0, 56);
     --light-navigate-backgrount-idle: rgb(255, 145, 0);
     --light-navigate-backgrount-hover: rgb(182, 103, 0);
 
@@ -41,6 +45,31 @@
 .Save:hover,
 .Save:focus {
     background-color: var(--save-background-hover);
+}
+
+.Remove {
+    background-color: var(--remove-background-idle);
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+}
+
+.Remove:hover,
+.Remove:focus {
+    background-color: var(--remove-background-hover);
+}
+
+.Logout {
+    background-color: var(--logout-background-idle);
+    color: white;
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+}
+
+.Logout:hover,
+.Logout:focus {
+    background-color: var(--logout-background-hover);
 }
 
 .Navigate.light {
