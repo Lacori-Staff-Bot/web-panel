@@ -11,11 +11,14 @@
     box-sizing: border-box;
 }
 
-html, body, #root {
+html,
+body,
+#root {
     font-family: "Noto Sans", sans-serif;
     font-weight: 600;
-    min-height: 100% !important;
-    height: 100%;
+    min-height: 100%;
     user-select: none;
-    font-size: 1dvw;
+    font-size: max(1dvw, 1dvh);
+    scrollbar-color: rgb(46, 46, 46) rgb(17, 17, 17);
+    scrollbar-width: thin;
 }

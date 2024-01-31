@@ -1,5 +1,5 @@
 .NavItem {
-    padding: .25rem 1rem;
+    padding: .25rem .5rem;
     transition: background-color 300ms ease-in-out, color 300ms linear;
     font-weight: 800;
 }

@@ -2,11 +2,11 @@
     --light-slider-background-idle: rgb(204, 204, 204);
     --light-slider-background-checked: rgb(0, 160, 189);
 
-    --dark-slider-background-idle: rgb(204, 204, 204);
-    --dark-slider-background-checked: rgb(0, 83, 192);
+    --dark-slider-background-idle: rgb(151, 151, 151);
+    --dark-slider-background-checked: rgb(0, 66, 153);
 }
 
-.Switch{
+.Switch {
     position: relative;
     display: inline-block;
     width: 4rem;
@@ -26,9 +26,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    -webkit-transition: 200ms;
-    transition: 200ms;
     border-radius: 2rem;
+    -webkit-transition: background-color 200ms;
+    transition: background-color 200ms;
 }
 
 .Slider::before {
@@ -40,8 +40,8 @@
     bottom: .25rem;
     border-radius: 2rem;
     background-color: white;
-    -webkit-transition: 400ms;
-    transition: 400ms;
+    -webkit-transition: transform 400ms;
+    transition: transform 400ms;
 }
 
 .Slider.light {
@@ -52,15 +52,15 @@
     background-color: var(--dark-slider-background-idle);
 }
 
-input:checked + .Slider.light {
+input:checked+.Slider.light {
     background-color: var(--light-slider-background-checked);
 }
 
-input:checked + .Slider.Slider.dark {
+input:checked+.Slider.Slider.dark {
     background-color: var(--dark-slider-background-checked);
 }
 
-input:checked + .Slider::before {
+input:checked+.Slider::before {
     -webkit-transform: translateX(2rem);
     -ms-transform: translateX(2rem);
     transform: translateX(2rem);

@@ -1,8 +1,8 @@
 :root {
+    --botname-background: rgb(255, 255, 255);
     --light-background: rgb(243, 240, 224);
     --light-header-background: rgb(255, 198, 75);
     --light-main-background: rgb(228, 187, 99);
-    --botname-background: rgb(255, 255, 255);
 
     --dark-background: rgb(57, 62, 70);
     --dark-header-background: rgb(21, 22, 63);
@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    min-height: 100vh;
     transition: background-color 200ms linear, color 200ms ease-in-out;
 }
 
@@ -36,10 +36,22 @@ header {
 }
 
 .Сontainer {
-    padding: 0 17dvw;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     width: 100%;
+    padding: 0 17dvw;
     animation: showMain 500ms ease-in-out;
+}
+
+.Notifyes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
 }
 
 .App.light {

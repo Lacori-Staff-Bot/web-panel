@@ -2,11 +2,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100%;
+    flex-grow: 1;
     width: 100%;
     gap: 1rem;
-    padding: 1rem 0;
+    padding: 2rem 0;
     transition: background-color 200ms linear;
 }
 
@@ -18,10 +17,10 @@
 .mainBlock {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     gap: 2rem;    
 
     width: 100%;
-    height: 100%;
     padding: 0 2rem;
 }
 
@@ -35,8 +34,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-grow: 1;
     justify-content: flex-end;
-    height: 100%;
 }
 
 .Guild.light {

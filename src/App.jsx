@@ -22,17 +22,16 @@ export const ThemeContext = React.createContext();
 export const NavigateContext = React.createContext();
 
 export function App() {
-  const [theme, setTheme] = useState("light");
-  const [notify, setNotify] = useState(null);
-  const [cookies, setCookies, removeCookies] = useCookies(["auth", "key"]);
+  const [notify, setNotify] = useState([]);
+  const [cookies, setCookies, removeCookies] = useCookies(["auth", "key", "theme"]);
   const [hideLogout, setHideLogout] = useState(!cookies.auth);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (notify !== null) {
+    if (notify.length !== 0) {
       setTimeout(() => {
-        setNotify(null);
+        setNotify(notify => notify.filter(n => n.key !== notify[0].key));
       }, 5 * 1000);
     }
   }, [notify]);
@@ -44,17 +43,18 @@ export function App() {
     }
     if (cookies.auth) setHideLogout(false);
     else setHideLogout(true);
-  }, [cookies, navigate]);
+    if (!cookies.theme) setCookies("theme", "light");
+  }, [cookies, setCookies, setHideLogout, navigate]);
 
   return (
-    <div className={theme === "light" ? "App light" : "App dark"}>
-      <header className={theme === "light" ? "light" : "dark"}>
-        <p className="BotName">{BOT_NAME}</p>
+    <div className={cookies.theme === "light" ? "App light" : "App dark"}>
+      <header className={cookies.theme === "light" ? "light" : "dark"}>
         <Switch onChange={(ev) => {
-          if (ev.currentTarget.checked) setTheme("dark");
-          else setTheme("light");
-        }} theme={theme} />
-        <ThemeContext.Provider value={theme}>
+          if (ev.currentTarget.checked) setCookies("theme", "dark");
+          else setCookies("theme", "light");
+        }} theme={cookies.theme} checked={cookies.theme === "dark" ? true : false} />
+        <p className="BotName">{BOT_NAME}</p>
+        <ThemeContext.Provider value={cookies.theme}>
           <MyButton onClick={(ev) => {
             logout(cookies.auth, cookies.key, removeCookies, navigate);
             setHideLogout(true);
@@ -62,24 +62,26 @@ export function App() {
         </ThemeContext.Provider>
       </header>
       <div className="Сontainer">
-        <ThemeContext.Provider value={theme}>
+        <ThemeContext.Provider value={cookies.theme}>
           <NavigateContext.Provider value={navigate}>
             <Routes>
               <Route path='auth' element={<AuthPage setCookies={setCookies} />} />
               <Route path='dashboard' element={<DashboardPage cookies={cookies} removeCookies={removeCookies} />} />
               <Route path='g/:id'>
-                <Route index element={<GuildPage mainBlock={<MainSettings cookies={cookies} removeCookies={removeCookies} setNotify={setNotify} />} />} />
-                <Route path='restrictions' element={<GuildPage mainBlock={<Restrictions cookies={cookies} removeCookies={removeCookies} setNotify={setNotify} />} />} />
-                <Route path='bans' element={<GuildPage mainBlock={<ActiveBans cookies={cookies} removeCookies={removeCookies} setNotify={setNotify} />} />} />
-                <Route path='warns' element={<GuildPage mainBlock={<ActiveWarns cookies={cookies} removeCookies={removeCookies} setNotify={setNotify} />} />} />
-                <Route path='blocks' element={<GuildPage mainBlock={<ActiveBlocks cookies={cookies} removeCookies={removeCookies} setNotify={setNotify} />} />} />
+                <Route index element={<GuildPage mainBlock={<MainSettings cookies={cookies} removeCookies={removeCookies} notify={notify} setNotify={setNotify} />} />} />
+                <Route path='restrictions' element={<GuildPage mainBlock={<Restrictions cookies={cookies} removeCookies={removeCookies} notify={notify} setNotify={setNotify} />} />} />
+                <Route path='bans' element={<GuildPage mainBlock={<ActiveBans cookies={cookies} removeCookies={removeCookies} notify={notify} setNotify={setNotify} />} />} />
+                <Route path='warns' element={<GuildPage mainBlock={<ActiveWarns cookies={cookies} removeCookies={removeCookies} notify={notify} setNotify={setNotify} />} />} />
+                <Route path='blocks' element={<GuildPage mainBlock={<ActiveBlocks cookies={cookies} removeCookies={removeCookies} notify={notify} setNotify={setNotify} />} />} />
               </Route>
               <Route path='*' element={<NotFound />} />
             </Routes>
           </NavigateContext.Provider>
         </ThemeContext.Provider>
       </div>
-      {notify}
+      <div className="Notifyes">
+        {notify}
+      </div>
     </div>
   );
 }

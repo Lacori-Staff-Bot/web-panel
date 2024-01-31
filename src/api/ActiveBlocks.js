@@ -3,14 +3,14 @@ import stringToHash from "../subfunctions/stringToHash";
 
 import Notify from "../components/UI/notify/Notify";
 
-function activeBlocks(cookie, key, params, type, id, setResponse, removeCookies, setNotify, navigate) {
+function activeBlocks(cookie, key, guildId, type, id, setResponse, removeCookies, notify, setNotify, navigate) {
     if (!cookie) {
         navigate("/auth", { replace: true });
         return;
     }
 
     const hash = stringToHash(key);
-    const data = { cookie, key: hash, guildId: params.id, type, id };
+    const data = { cookie, key: hash, guildId, type, id };
     sendAPIRequest("POST", "/active_blocks", data, (ev) => {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
@@ -22,7 +22,7 @@ function activeBlocks(cookie, key, params, type, id, setResponse, removeCookies,
                 removeCookies("key")
                 navigate("/auth", { replace: true });
             } else if (xhr.status === 502) {
-                setNotify(<Notify label={"Ошибка"} type={"Error"} description={"Блокировка уже не является активной."} />)
+                setNotify(notify => [...notify, <Notify label={"Ошибка"} type={"Error"} description={"Блокировка уже не является активной."} key={notify.length} />]);
             }
         }
     })

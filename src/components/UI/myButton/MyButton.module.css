@@ -77,6 +77,14 @@
     color: black;
 }
 
+.Remove.light {
+    color: black;
+}
+
+.Remove.dark {
+    color: white;
+}
+
 .Navigate.light:hover,
 .Navigate.light:focus {
     background-color: var(--light-navigate-backgrount-hover);

@@ -7,7 +7,7 @@ import LoadingScreen from "../../../components/UI/loadingScreen/LoadingScreen";
 import ActiveBlock from "../../../components/activeBlock/ActiveBlock";
 import Nothink from "../../../components/UI/nothink/Nothink";
 
-function ActiveBans({ cookies, removeCookies, setNotify }) {
+function ActiveBans({ cookies, removeCookies, notify, setNotify }) {
     const [bans, setBans] = useState([]);
 
     const [response, setResponse] = useState(null);
@@ -17,8 +17,8 @@ function ActiveBans({ cookies, removeCookies, setNotify }) {
     const params = useParams();
 
     useEffect(() => {
-        activeBans(cookies.auth, cookies.key, params, "get_info", undefined, setResponse, removeCookies, setNotify, navigate);
-    }, [cookies, params, navigate, removeCookies, setNotify]);
+        activeBans(cookies.auth, cookies.key, params.id, "get_info", undefined, setResponse, removeCookies, undefined, undefined, navigate);
+    }, [cookies.auth, cookies.key, params.id, navigate, removeCookies, setNotify]);
 
     useEffect(() => {
         if (response !== null) {
@@ -31,14 +31,14 @@ function ActiveBans({ cookies, removeCookies, setNotify }) {
             setBlockBody([]);
             for (const ban of bans) {
                 setBlockBody(blockBody => [...blockBody, <ActiveBlock onClick={(ev) => {
-                    activeBans(cookies.auth, cookies.key, params, "remove_ban", ban.id, undefined, removeCookies, setNotify, navigate);
+                    activeBans(cookies.auth, cookies.key, params.id, "remove_ban", ban.id, undefined, removeCookies, notify, setNotify, navigate);
                     setBans(bans => bans.filter(b => b.id !== ban.id));
                 }} target={ban.target} author={ban.author} reasone={ban.reasone} data={ban.data} key={ban.id} />]);
             }
         } else {
             setBlockBody(<Nothink />);
         }
-    }, [cookies, params, removeCookies, navigate, setNotify, bans]);
+    }, [cookies.auth, cookies.key, params.id, removeCookies, navigate, notify, setNotify, bans]);
 
     return (
         <div className="mainBlock">

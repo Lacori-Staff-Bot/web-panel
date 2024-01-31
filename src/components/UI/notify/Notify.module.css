@@ -5,9 +5,9 @@
 
     padding: 1rem;
     border-radius: 1rem;
-    position: fixed;
+    /* position: fixed;
     right: 2rem;
-    bottom: 2rem;
+    bottom: 2rem; */
     max-width: 25vw;
     animation: created 500ms ease-in;
 }
