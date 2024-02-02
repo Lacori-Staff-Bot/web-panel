@@ -1,3 +1,4 @@
-export const CLIENT_ID = "1186970730412388382";
-export const MAIN_REDIRECT_URI = "http://localhost:3000";
-export const API_URL = "http://localhost:3001";
+export const CLIENT_ID = "YORT_BOT_CLIENT_ID";
+export const MAIN_REDIRECT_URI = "YOUR_FRONT_END_URL";
+export const API_URL = "YOUR_API_URL";
+export const BOT_NAME = "Lacori/Staff Bot";

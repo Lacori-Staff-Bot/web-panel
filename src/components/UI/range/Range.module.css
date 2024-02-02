@@ -1,0 +1,36 @@
+:root {
+    --ranger-background: rgb(151, 151, 151);
+    --ranger-background-thumb: rgb(0, 66, 153);
+}
+
+.Range {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.Range p {
+    font-size: 1.5rem;
+}
+
+.Ranger {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    height: 1rem;
+    background-color: var(--ranger-background);
+}
+
+.Ranger::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 1rem;
+    width: 1rem;
+    background-color: var(--ranger-background-thumb);
+}
+
+.Ranger::-moz-slider-thumb {
+    height: 1rem;
+    width: 1rem;
+    background-color: var(--ranger-background-thumb);
+}

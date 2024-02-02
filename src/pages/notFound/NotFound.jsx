@@ -1,7 +1,7 @@
 import React from "react";
 import "./NotFound.css";
 
-import NavLink from "../../UI/navLink/NavLink";
+import NavLink from "../../components/UI/navLink/NavLink";
 
 function NotFound() {
     return (

@@ -1,0 +1,101 @@
+:root {
+    --save-background-idle: rgb(9, 212, 9);
+    --save-background-hover: rgb(17, 148, 17);
+    --remove-background-idle: rgb(255, 33, 33);
+    --remove-background-hover: rgb(187, 21, 21);
+    --logout-background-idle: rgb(151, 0, 93);
+    --logout-background-hover: rgb(90, 0, 56);
+    --light-navigate-backgrount-idle: rgb(255, 145, 0);
+    --light-navigate-backgrount-hover: rgb(182, 103, 0);
+
+
+    --dark-navigate-backgrount-idle: rgb(0, 119, 255);
+    --dark-navigate-backgrount-hover: rgb(0, 58, 182);
+}
+
+.MyButton {
+    border: none;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 800;
+    transition: background-color 200ms linear, transform 100ms linear, color 100ms linear;
+    cursor: pointer;
+}
+
+.MyButton:hover,
+.MyButton:focus {
+    transform: scale(90%);
+}
+
+.Navigate {
+    font-weight: 800;
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    box-shadow: 0 0 .25rem black;
+}
+
+.Save {
+    color: white;
+    background-color: var(--save-background-idle);
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    font-size: 1.5rem;
+}
+
+.Save:hover,
+.Save:focus {
+    background-color: var(--save-background-hover);
+}
+
+.Remove {
+    background-color: var(--remove-background-idle);
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+}
+
+.Remove:hover,
+.Remove:focus {
+    background-color: var(--remove-background-hover);
+}
+
+.Logout {
+    background-color: var(--logout-background-idle);
+    color: white;
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+}
+
+.Logout:hover,
+.Logout:focus {
+    background-color: var(--logout-background-hover);
+}
+
+.Navigate.light {
+    background-color: var(--light-navigate-backgrount-idle);
+    color: black;
+}
+
+.Remove.light {
+    color: black;
+}
+
+.Remove.dark {
+    color: white;
+}
+
+.Navigate.light:hover,
+.Navigate.light:focus {
+    background-color: var(--light-navigate-backgrount-hover);
+}
+
+.Navigate.dark {
+    background-color: var(--dark-navigate-backgrount-idle);
+    color: white;
+}
+
+.Navigate.dark:hover,
+.Navigate.dark:focus {
+    background-color: var(--dark-navigate-backgrount-hover);
+}
